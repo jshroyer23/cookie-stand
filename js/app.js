@@ -57,6 +57,7 @@ function createHeaderRow(){
 
 // Function to add a store to the table
 Store.prototype.render = function() {
+    var storeBody = document.createElement('tbody');
     var storeRow = document.createElement('tr');
     var storeData = document.createElement('td');
     var cookieSales = [];
@@ -68,11 +69,13 @@ Store.prototype.render = function() {
         storeRow.appendChild(salesData);
         cookieSales[i] = this.cookiePerHour[i];    
     }
+    cookieSales.push(this.totalCookies);
     cookieTotal.push(cookieSales);
     var storeData = document.createElement('td');
     storeData.textContent = this.totalCookies;
     storeRow.appendChild(storeData);
-    storeTable.appendChild(storeRow); 
+    storeBody.appendChild(storeRow);
+    storeTable.appendChild(storeBody); 
 }
 
 // Function to create footer row
@@ -82,9 +85,9 @@ function createTotalRow(){
     var totalData = document.createElement('td');
     totalData.textContent = 'Totals';
     totalRow.appendChild(totalData);
-    for (var i = 0; i < hours.length; i++){
+    for (var i = 0; i < hours.length+1; i++){
         var ctData = document.createElement('td');
-        ctData.textContent = sumArray(i);
+        // ctData.textContent = sumArray(this.storeName);
         totalRow.appendChild(ctData);
     }
     totalFoot.appendChild(totalRow);
@@ -92,11 +95,14 @@ function createTotalRow(){
     parentElement.appendChild(storeTable);
 }
 
-function sumArray(){
+function sumArray(name){
     var total = 0;
+    var index = stores.indexOf(name);
+    console.log(index);
+    console.log(hours.length);
     for (var i = 0; i < cookieTotal.length; i ++){
-        for (var j = 0; j < hours.length; j ++){
-            total += cookieTotal[i][j];
+        for (var j = 0; j < hours.length+1; j ++){
+            total += cookieTotal[index][j];
         }
     }
     return total;
