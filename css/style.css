@@ -1,3 +1,30 @@
 #headRow {
     font-weight: bold;
 }
+
+tbody td {
+    border: 1px solid black;
+    margin: 0;
+}
+
+tfoot td {
+    border: 1px solid black;
+    margin: 0;
+}
+
+h1 {
+    font-family: 'Alegreya', serif;
+    font-size: 50px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td {
+    width: 75px;
+}
+
+#salesHeader {
+    text-align: center;
+}
