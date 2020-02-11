@@ -133,3 +133,4 @@ for(var i = 0; i < createStore.length; i++){
     createStore[i].render();
 }
 createTotalRow();
+
