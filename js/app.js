@@ -75,7 +75,7 @@ Store.prototype.render = function() {
     storeData.textContent = this.totalCookies;
     storeRow.appendChild(storeData);
     storeBody.appendChild(storeRow);
-    storeTable.appendChild(storeBody); 
+    storeTable.appendChild(storeBody);
 }
 
 // Function to create footer row
@@ -87,7 +87,7 @@ function createTotalRow(){
     totalRow.appendChild(totalData);
     for (var i = 0; i < hours.length+1; i++){
         var ctData = document.createElement('td');
-        // ctData.textContent = sumArray(this.storeName);
+        ctData.textContent = sumArray(i);
         totalRow.appendChild(ctData);
     }
     totalFoot.appendChild(totalRow);
@@ -95,15 +95,10 @@ function createTotalRow(){
     parentElement.appendChild(storeTable);
 }
 
-function sumArray(name){
+function sumArray(i){
     var total = 0;
-    var index = stores.indexOf(name);
-    console.log(index);
-    console.log(hours.length);
-    for (var i = 0; i < cookieTotal.length; i ++){
-        for (var j = 0; j < hours.length+1; j ++){
-            total += cookieTotal[index][j];
-        }
+    for (var j = 0; j < cookieTotal.length; j++){
+        total += cookieTotal[j][i];
     }
     return total;
 }
