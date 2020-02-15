@@ -57,7 +57,8 @@ function createHeaderRow(){
 
 // Function to add a store to the table
 Store.prototype.render = function() {
-    var storeBody = document.createElement('tbody');
+    var storeBody =document.getElementById('table-body');
+    // var storeBody = document.createElement('tbody');
     var storeRow = document.createElement('tr');
     var storeData = document.createElement('td');
     var cookieSales = [];
@@ -75,7 +76,6 @@ Store.prototype.render = function() {
     storeData.textContent = this.totalCookies;
     storeRow.appendChild(storeData);
     storeBody.appendChild(storeRow);
-    storeTable.appendChild(storeBody);
 }
 
 // Function to create footer row
@@ -145,8 +145,10 @@ function handleFormSubmit(event){
     console.log(nameValue, minValue,maxValue,avgValue);
     // Use the constuctor to create a new store instance
     var newStore = new Store(nameValue, minValue, maxValue, avgValue);
+    console.log('Pre-prototype ', newStore);
     newStore.setAvgCookie();
     newStore.setTotalCookies();
+    console.log('Prototype ', newStore);
     // Render the new store instance to the table
     newStore.render();
     var form = document.getElementById("newStand");
