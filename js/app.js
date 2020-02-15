@@ -148,7 +148,6 @@ function handleFormSubmit(event) {
     var minValue = parseInt(document.getElementById('min').value, 10);
     var maxValue = parseInt(document.getElementById('max').value, 10);
     var avgValue = parseFloat(document.getElementById('avg').value);
-    console.log(nameValue, minValue, maxValue, avgValue);
     // Use the constuctor to create a new store instance
     var newStore = new Store(nameValue, minValue, maxValue, avgValue);
     newStore.setAvgCookie();
