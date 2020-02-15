@@ -17,33 +17,33 @@ function Store(name, min, max, avg) {
     this.totalCookies = 0;
 }
 
-Store.prototype.setAvgCookie = function(){
-    for (var i = 0; i < hours.length; i++){
+Store.prototype.setAvgCookie = function() {
+    for (var i = 0; i < hours.length; i++) {
         this.cookiePerHour[i] = randomCookie(this.minCustomer, this.maxCustomer, this.cookiePerSale);
     }
 };
 
-Store.prototype.setTotalCookies = function(){
-    for (var i = 0; i < this.cookiePerHour.length; i++){
+Store.prototype.setTotalCookies = function() {
+    for (var i = 0; i < this.cookiePerHour.length; i++) {
         this.totalCookies += this.cookiePerHour[i];
     }
 };
 
-function randomCookie(min, max, avg){
-    return Math.floor((Math.random() * (max-min) + min) * avg);
+function randomCookie(min, max, avg) {
+    return Math.floor((Math.random() * (max - min) + min) * avg);
 }
 
 
 var parentElement = document.getElementById('stores');
 var storeTable = document.getElementById('store_table');
 
-function createHeaderRow(){
+function createHeaderRow() {
     var storeTableHead = document.getElementById('storeHead');
     var storeRow = document.getElementById('headRow');
     var storeData = document.createElement('td');
     storeRow.appendChild(storeData);
     // Create rows of store data
-    for (var i = 0; i < hours.length; i ++){
+    for (var i = 0; i < hours.length; i++) {
         var hourData = document.createElement('td');
         hourData.textContent = hours[i];
         storeRow.appendChild(hourData);
@@ -57,18 +57,18 @@ function createHeaderRow(){
 
 // Function to add a store to the table
 Store.prototype.render = function() {
-    var storeBody =document.getElementById('table-body');
+    var storeBody = document.getElementById('table-body');
     // var storeBody = document.createElement('tbody');
     var storeRow = document.createElement('tr');
     var storeData = document.createElement('td');
     var cookieSales = [];
     storeData.textContent = this.storeName;
     storeRow.appendChild(storeData);
-    for (var i = 0; i < hours.length; i++){
+    for (var i = 0; i < hours.length; i++) {
         var salesData = document.createElement('td');
         salesData.textContent = this.cookiePerHour[i];
         storeRow.appendChild(salesData);
-        cookieSales[i] = this.cookiePerHour[i];    
+        cookieSales[i] = this.cookiePerHour[i];
     }
     cookieSales.push(this.totalCookies);
     cookieTotal.push(cookieSales);
@@ -79,13 +79,14 @@ Store.prototype.render = function() {
 }
 
 // Function to create footer row
-function createTotalRow(){
-    var totalFoot = document.createElement('tfoot');
+function createTotalRow() {
+
+    var totalFoot = document.getElementById("table-footer");
     var totalRow = document.createElement('tr');
     var totalData = document.createElement('td');
     totalData.textContent = 'Totals';
     totalRow.appendChild(totalData);
-    for (var i = 0; i < hours.length+1; i++){
+    for (var i = 0; i < hours.length + 1; i++) {
         var ctData = document.createElement('td');
         ctData.textContent = sumArray(i);
         totalRow.appendChild(ctData);
@@ -95,9 +96,18 @@ function createTotalRow(){
     parentElement.appendChild(storeTable);
 }
 
-function sumArray(i){
+function updateTotalRow() {
+    var footer = document.getElementById("table-footer");
+    if (footer.hasChildNodes()) {
+        footer.innerHTML = '';
+    }
+    createTotalRow();
+}
+
+function sumArray(i) {
     var total = 0;
-    for (var j = 0; j < cookieTotal.length; j++){
+    console.log(cookieTotal);
+    for (var j = 0; j < cookieTotal.length; j++) {
         total += cookieTotal[j][i];
     }
     return total;
@@ -124,35 +134,32 @@ var createStore = [seattleStore, tokyoStore, dubaiStore, parisStore, limaStore];
 
 createHeaderRow();
 
-for(var i = 0; i < createStore.length; i++){
+for (var i = 0; i < createStore.length; i++) {
     createStore[i].render();
 }
 
-
-function handleFormSubmit(event){
+function handleFormSubmit(event) {
     console.log(event);
     // Prevent the default
     event.preventDefault();
     // Get the data about the new store from the form inputs
     var nameInput = document.getElementById('name');
-    var minInput = document.getElementById('min');
-    var maxInput = document.getElementById('max');
-    var avgInput = document.getElementById('avg');
     var nameValue = nameInput.value;
-    var minValue = minInput.value;
-    var maxValue = maxInput.value;
-    var avgValue = avgInput.value;
-    console.log(nameValue, minValue,maxValue,avgValue);
+    var minValue = parseInt(document.getElementById('min').value, 10);
+    var maxValue = parseInt(document.getElementById('max').value, 10);
+    var avgValue = parseFloat(document.getElementById('avg').value);
+    console.log(nameValue, minValue, maxValue, avgValue);
     // Use the constuctor to create a new store instance
     var newStore = new Store(nameValue, minValue, maxValue, avgValue);
-    console.log('Pre-prototype ', newStore);
     newStore.setAvgCookie();
     newStore.setTotalCookies();
-    console.log('Prototype ', newStore);
     // Render the new store instance to the table
     newStore.render();
+
+    createStore.push(newStore);
     var form = document.getElementById("newStand");
     form.reset();
+    updateTotalRow();
 }
 
 // Create event listener for form being submitted
