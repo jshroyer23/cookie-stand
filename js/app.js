@@ -3,7 +3,7 @@
 console.log('It is working!');
 
 
-var stores = ['Seattle', 'Tokyo', 'Dubai', 'Paris', 'Lima'];
+// var stores = ['Seattle', 'Tokyo', 'Dubai', 'Paris', 'Lima'];
 var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
 var cookieTotal = [];
 
@@ -123,9 +123,38 @@ limaStore.setTotalCookies();
 var createStore = [seattleStore, tokyoStore, dubaiStore, parisStore, limaStore];
 
 createHeaderRow();
-// //Loop through the objects to show their sales data. 
+
 for(var i = 0; i < createStore.length; i++){
     createStore[i].render();
 }
-createTotalRow();
 
+
+function handleFormSubmit(event){
+    console.log(event);
+    // Prevent the default
+    event.preventDefault();
+    // Get the data about the new store from the form inputs
+    var nameInput = document.getElementById('name');
+    var minInput = document.getElementById('min');
+    var maxInput = document.getElementById('max');
+    var avgInput = document.getElementById('avg');
+    var nameValue = nameInput.value;
+    var minValue = minInput.value;
+    var maxValue = maxInput.value;
+    var avgValue = avgInput.value;
+    console.log(nameValue, minValue,maxValue,avgValue);
+    // Use the constuctor to create a new store instance
+    var newStore = new Store(nameValue, minValue, maxValue, avgValue);
+    newStore.setAvgCookie();
+    newStore.setTotalCookies();
+    // Render the new store instance to the table
+    newStore.render();
+    var form = document.getElementById("newStand");
+    form.reset();
+}
+
+// Create event listener for form being submitted
+var formEvent = document.getElementById('newStand');
+formEvent.addEventListener('submit', handleFormSubmit);
+
+createTotalRow();
