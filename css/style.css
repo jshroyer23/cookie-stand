@@ -15,6 +15,19 @@ tfoot td {
 h1 {
     font-family: 'Alegreya', serif;
     font-size: 50px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 15px;
 }
 
 table {
@@ -25,6 +38,94 @@ td {
     width: 75px;
 }
 
+li {
+    font-size: 15px;
+}
+
+.intro {
+    font-family: 'Alegreya', serif;
+    font-size: 25px;
+    margin: auto;
+    text-align: center;
+    width: 960px;
+}
+
 #salesHeader {
     text-align: center;
 }
+
+fieldset {
+    margin-top: 25px;
+}
+
+#salesLink {
+    margin-top: 100px;
+}
+
+#pageLink {
+    background-color: #ab5032;
+    color: white;
+    padding: .5em 1em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+#pageLink:hover {
+    background-color: #5c2b1b;
+    text-decoration: underline;
+}
+
+#familyText {
+    font-family: 'Alegreya', serif;
+    font-size: 25px;
+}
+
+#locations {
+    margin-top: 25px;
+    margin: auto;
+    width: 860px;
+}
+
+#foot {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%
+}
+
+#locTitle {
+    text-align: center;
+}
+
+.locations {
+    float: left;
+    width: 20%;
+}
+
+#headRow {
+    background: #ab8d32
+}
+
+#triple {
+    width: 960px;
+    display: block;
+    height: auto;
+    padding: 60px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tripleImg {
+   float: left;
+   height: 200px;
+   width: 300px;
+   margin-right: auto;
+   margin-left: auto;
+}
+ #salmon {
+     margin-bottom: 25px;
+     margin-left: 10%;
+     margin-top: 25px;
+ }
+ #chinook {
+     margin-bottom: 25px;
+     margin-top: 25px;
+ }
