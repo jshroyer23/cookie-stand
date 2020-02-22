@@ -40,6 +40,15 @@ table {
     border-collapse: collapse;
 }
 
+#table-body {
+    background-color: rgb(143, 157, 172);
+}
+
+#tFooter {
+    background-color: rgb(143, 157, 172);
+    font-weight: bold;
+}
+
 td {
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(67, 67, 68);
@@ -63,11 +72,17 @@ li {
 }
 
 fieldset {
-    background-color: rgb(82, 104, 126);
+    background-color: rgb(108, 132, 156);
     border: 2px solid white;
     color: rgb(169, 183, 197);
     margin-top: 25px;
 }
+
+legend {
+    color: black;
+    font-weight: bold;
+}
+    
 
 #salesLink {
     margin-top: 100px;
@@ -90,9 +105,14 @@ fieldset {
     font-size: 25px;
 }
 
-#locations {
-    margin-top: 25px;
-    margin: auto;
+#family {
+    border: 2px solid black;
+    border-style: ridge;
+}
+
+#famSection {
+    text-align: center;
+    margin: 25px auto;
     width: 860px;
 }
 
@@ -115,11 +135,16 @@ fieldset {
     background: #ab8d32
 }
 
+#primary {
+    text-align: center;
+}
+
 #triple {
-    width: 960px;
-    display: block;
+    text-align: center;
+    display: inline-block;
     height: auto;
     padding: 60px;
+    margin-bottom: 25px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -128,8 +153,6 @@ fieldset {
    float: left;
    height: 200px;
    width: 300px;
-   margin-right: auto;
-   margin-left: auto;
 }
  #salmon {
      margin-bottom: 25px;
